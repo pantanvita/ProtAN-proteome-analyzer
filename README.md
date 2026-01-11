@@ -1,13 +1,13 @@
 # ProtAN (**Prot**eome**AN**alyzer)
 
-ProtAN is a bioinformatics tool dedicated for analysis of large proteomics datasets. It identifies the differentially expressed proteins (DEPs) mapping them onto molecular pathways thus allowing comprehensive interpretation and analysis of biologically relevant data.
+ProtAN is a bioinformatics tool dedicated for the analysis of large-scale proteomics datasets. It analyzes the differentially expressed proteins (DEPs) mapping them onto molecular pathways thus allowing comprehensive interpretation and analysis of biologically relevant data.
 
 ## Introduction
 
 Mass spectrometry-based Proteomics is the large-scale study of proteins to understand biological systems.
 The output data from a mass spectrometer is analyzed in two parts: pre- and post-processing.
 
-In pre-processing, the proteins in the samples are identified by aligning them against a known database followed by data normalization, missing value imputation and log2 transformation. Software such as MaxQuant (DDA-based) or Perseus (DIA-based) can be used for this.
+In pre-processing, the proteins in the samples are identified by aligning them against a known database followed by data normalization, missing value imputation and log2- transformation. Software such as MaxQuant (DDA-based) or Perseus (DIA-based) can be used for this.
 
 The post-processing steps include statistically identifying the dysregulated proteins and their functional role in biological networks. Downstream analysis also includes protein-protein interactions, motif enrichment, peptide selection and many more.
 
@@ -19,7 +19,7 @@ Researchers have to browse through multiple tools and software, each having thei
 
 Thus, ProtAN is a combined tool dedicated for analyzing post-processed proteomics data with a single file input.
 
-# ProtAN Pipeline Overview
+## ProtAN Pipeline Overview
 
 Load data (.csv file)
            ↓
@@ -61,7 +61,7 @@ Values are log2-transformed, normalized, imputed from the pre-processing steps
 
 ## 2. Statistical analysis
 
-Includes Student t-test, Fold change= 1.5, p-value < 0.05, Mann–Whitney
+Includes Student t-test, Fold change= 1.5, p-value < 0.05, Mann–Whitney test
 
 Volcano plot, selection of top differentially regulated proteins, PCA analysis and heatmap
 
@@ -73,6 +73,7 @@ Usage of `.json` files, `API calls` and `requests`
 ## 4.Protein-Protein Interaction (PPI) Network Building
 
 Build interaction networks for deregulated proteins
+
 Identify hubs and bottlenecks
 
 Usage of `networkx` and STRING API
@@ -108,7 +109,9 @@ results/
 ## Installations
 
 Python v3.9+
+
 pip install pandas numpy scipy statsmodels matplotlib seaborn scikit-learn
+
 pip install gseapy networkx requests biopython reportlab
 
 
