@@ -172,9 +172,9 @@ results/
 
 Python v3.9+
 
-pip install `pandas` `numpy` `scipy` `statsmodels` `matplotlib` `seaborn` `scikit-learn`
+`pandas` `numpy` `scipy` `statsmodels` `matplotlib` `seaborn` `scikit-learn`
 
-pip install `gseapy` `networkx` `requests` `biopython` `reportlab`
+`gseapy` `networkx` `requests` `biopython` `reportlab`
 
 ## 📖 Dataset Used
 
