@@ -41,6 +41,8 @@ All steps are executed through a single CLI tool, ensuring reproducibility and s
 ## 📥 Input data format
 
  `.csv` or `.xlsx` file in the following format-
+ 
+ ![image](prot-data-str.png)
 
 S1, S2, S3: drug-sensitive biological replicates
 
