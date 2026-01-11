@@ -172,9 +172,9 @@ results/
 
 Python v3.9+
 
-pip install pandas numpy scipy statsmodels matplotlib seaborn scikit-learn
+pip install `pandas` `numpy` `scipy` `statsmodels` `matplotlib` `seaborn` `scikit-learn`
 
-pip install gseapy networkx requests biopython reportlab
+pip install `gseapy` `networkx` `requests` `biopython` `reportlab`
 
 ## 📖 Dataset Used
 
@@ -205,4 +205,4 @@ This code does not generalize-
 
 ## 🔓 Summary
 
-This pipeline provides an end-to-end, reproducible framework for integrating statistical proteomics, pathway biology, network analysis, and motif-level interpretation. It bridges wet-lab proteomics with computational systems biology, enabling mechanistic insights into drug resistance.
+This pipeline provides an end-to-end, reproducible framework for integrating statistical proteomics, pathway biology, network analysis, and motif-level interpretation. It bridges wet-lab proteomics with computational systems biology, enabling mechanistic insights into drug resistance in cancer.
