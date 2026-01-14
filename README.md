@@ -172,9 +172,38 @@ results/
 
 Python v3.9+
 
-`pandas` `numpy` `scipy` `statsmodels` `matplotlib` `seaborn` `scikit-learn`
+| Package                  | Used for                      |  
+| ------------             | ----------------------------- |
+| pandas >=1.5             | Data loading & manipulation   |
+| numpy >=1.23             | Numerical operations          |
+| scipy >=1.9              | Statistical tests             |
+| statsmodels >=0.13       | FDR correction                |
+| matplotlib >=3.6         | Volcano, PCA, heatmaps        |
+| seaborn >=0.12           | Cleaner statistical plots     |
+| scikit-learn >=1.2       | PCA                           |
+| networkx >=3.0           | PPI networks                  |
+| requests >=2.28          | Reactome / KEGG / STRING APIs |
+| openpyxl >=3.1           | Excel input                   |
+| reportlab >=4.0          | PDF report generation         |
+| tqdm >=4.65              | Progress bars for APIs        |
 
-`gseapy` `networkx` `requests` `biopython` `reportlab`
+To install the above dependencies, run:
+
+`pip install -r requirements.txt`
+
+## ▶️ Usage
+
+To run the program, use the following command in the terminal:
+
+`python proteomics_pipeline.py --input proteomics_data.csv --outdir results/`
+
+This will:
+
+1. Read your Excel or CSV file (input as `proteomics_data.csv`). You can usea different file name and format (.csv or.xlsx) but also change accordingly in the usage command.
+2. Perform differential expression analysis
+3. Generate plots
+4. Run Reactome, KEGG, STRING analyses
+5. Produce PDF 1 and PDF 2 inside `results/`
 
 ## 📖 Dataset Used
 
@@ -190,9 +219,9 @@ The dataset used here is Table S4.
 
 ## 💻🔨 Applicability and Extensibility
 
-Although developed for drug-sensitive vs resistant cell lines, this pipeline can be applied to:
+This pipeline can be applied to:
 
-* Other drug resistance models (cell lines/ tissue datasets)
+* Drug resistance models (cell lines/ tissue datasets)
 * Paired cancer proteomics datasets
 * Label-free or isobaric-tag–based quantitative proteomics
 * Knockdown vs Wildtype
