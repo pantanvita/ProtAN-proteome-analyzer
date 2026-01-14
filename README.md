@@ -146,7 +146,7 @@ Motifs are:
 * Annotated with known functional roles (e.g., phosphorylation sites, interaction motifs)
 * Linked to potential regulatory mechanisms or protein–protein interactions
 
-## 6. 📤 Output files
+## 📤 Output files
 
 results/
 
