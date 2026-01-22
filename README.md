@@ -35,7 +35,7 @@ The pipeline performs the following major steps:
 5. Protein–protein interaction (PPI) network construction using STRING
 6. Network-level statistics and hub identification
 7. Motif enrichment analysis among deregulated proteins
-8. Automated PDF report generation
+8. Automated PDF and PNG report generation
 
 All steps are executed through a single CLI tool, ensuring reproducibility and scalability to other datasets with similar structure.
 
@@ -244,7 +244,7 @@ python protan_pipeline.py
 
 This will:
 
-1. Read your Excel or CSV file (input as `proteome-data.csv`). You can usea different file name and format (.csv or.xlsx) but also change accordingly in the run command.
+1. Read your Excel or CSV file (input as `proteome-data.csv`). You can use a different file name and format (`.csv` or `.xlsx`) but change accordingly in the code.
 2. Perform differential expression analysis
 3. Generate plots
 4. Run KEGG, GO and STRING analyses
@@ -255,6 +255,8 @@ This will:
 To run the tests in the terminal:
 
 ```bash
+pip install pytest
+
 pytest tests/test_protan_pipeline.py -v
 ```
 
