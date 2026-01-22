@@ -21,7 +21,8 @@ While working on the analysis of drug resistivity proteomics data I realized tha
 Researchers have to browse through multiple tools and software, each having their compatibility issues, different file formats and handling multiple files. This makes it cumbersome for the researchers.
 
 Thus, ProtAN provides a reproducible, command-line–driven Python pipeline for comparative analysis of drug-sensitive vs resistant proteomics data.
-The workflow assumes that proteomics data have already undergone missing value imputation, normalization, and log-transformation, allowing the pipeline to focus on downstream statistical analysis, functional interpretation, and network biology.
+
+This workflow assumes that the input proteomics data have already undergone missing value imputation, normalization, and log-transformation, allowing the pipeline to focus on downstream statistical analysis, functional interpretation, and network biology.
 
 ## 🔎 ProtAN Pipeline Overview
 
