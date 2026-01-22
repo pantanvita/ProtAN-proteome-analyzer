@@ -268,7 +268,7 @@ Amrita Mukherjee, Sayan Manna, Avinash Singh, Adrija Ray, and Sanjeeva Srivastav
 
 Journal of Proteome Research 2025 24 (6), 2628-2642
 
-[DOI:10.1021/acs.jproteome.4c00885](https://doi.org/10.1021/acs.jproteome.4c00885))
+[DOI:10.1021/acs.jproteome.4c00885](https://doi.org/10.1021/acs.jproteome.4c00885)
 
 The dataset used here is Table S4.
 
