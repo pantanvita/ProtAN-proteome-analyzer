@@ -152,7 +152,7 @@ The pipeline is designed for paired proteomics analysis only. All input files sh
 
  `.csv` file in the following format-
  
- ![image](prot-data-str.png)
+ ![image](images/prot-data-str.png)
 
 S1, S2, S3: drug-sensitive biological replicates
 
