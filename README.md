@@ -4,7 +4,7 @@ ProtAN is a Python-based bioinformatics pipeline dedicated for the comparative a
 
 ## 📊 Introduction
 
-Drug sensitivity and resistance in cancer research remains a major clinical challenge, necessitating systematic approaches to identify deregulated proteins, affected pathways, and altered protein–protein interaction (PPI) networks.
+Drug sensitivity and resistance in cancer research remains a major clinical challenge, necessitating systematic approaches to identify deregulated proteins and affected pathways.
 
 High-throughput mass spectrometry-based Proteomics is widely used to investigate proteins and molecular mechanisms underlying drug sensitivity and resistance in cancer.
 
