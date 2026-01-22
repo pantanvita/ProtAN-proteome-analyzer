@@ -136,16 +136,41 @@ Motifs are:
 
 ## 📝 Files to be run in the repository
 
-1. `protan_pipeline.py`
-
+1. `requirements.txt`
 2. `proteome-data.csv`
-
-3. `requirements.txt`
-
+3. `protan_pipeline.py`
 4. `tests/test_protan_pipeline.py`
 
+## 🧭 Steps to run
 
-## 📥 Input data format
+## 🏃‍♀️ 1. Dependencies
+
+To install the dependencies, run:
+
+```bash
+pip install -r requirements.txt
+```
+
+Required: Python v3.14
+
+| Package                  | Used for                             |  
+| ------------             | -----------------------------        |
+| pandas >=1.5             | Data loading & manipulation          |
+| numpy >=1.23             | Numerical operations                 |
+| scipy >=1.9              | Statistical tests                    |
+| statsmodels >=0.13       | FDR correction                       |
+| matplotlib >=3.6         | Volcano, PCA, heatmaps               |
+| seaborn >=0.12           | Cleaner statistical plots            |
+| scikit-learn >=1.2       | PCA                                  |
+| networkx >=3.0           | PPI networks                         |
+| requests >=2.28          | Reactome / KEGG / STRING APIs        |
+| openpyxl >=3.1           | Excel input                          |
+| reportlab >=4.0          | PDF report generation                |
+| tqdm >=4.65              | Progress bars for APIs               |
+| gseapy>=1.0              | Pathway and gene set enrichment      |
+| pyyaml>=6.0              | Pipeline configuration management    |
+
+## 📥 2. Input data format
 
 The pipeline is designed for paired proteomics analysis only. All input files should be paired. Users can change input file format and dataframe headers as per the dataset.
 
@@ -171,7 +196,33 @@ Assumptions-
 * Data are normalized across samples
 * Missing values have been imputed prior to analysis
 
-## 📤 Output files
+## ▶️ 3. Usage
+
+To run the program in the terminal:
+
+```bash
+python protan_pipeline.py
+```
+
+This will:
+
+1. Read your Excel or CSV file (input as `proteome-data.csv`). You can use a different file name and format (`.csv` or `.xlsx`) but change accordingly in the code.
+2. Perform differential expression analysis
+3. Generate plots
+4. Run KEGG, GO and STRING analyses
+5. Produce the output files
+
+---
+
+4. To run the tests in the terminal:
+
+```bash
+pip install pytest
+
+pytest tests/test_protan_pipeline.py -v
+```
+
+## 📤 5. Output files
 
     ├── proteome-data_DE_all
 
@@ -206,59 +257,6 @@ Assumptions-
           ├── motif_enrichment_bubble.pdf
           ├── protein_motif_counts.csv
 
-## 🏃‍♀️ Dependencies
-
-To install the dependencies, run:
-
-```bash
-pip install -r requirements.txt
-```
-
-Required: Python v3.14
-
-| Package                  | Used for                             |  
-| ------------             | -----------------------------        |
-| pandas >=1.5             | Data loading & manipulation          |
-| numpy >=1.23             | Numerical operations                 |
-| scipy >=1.9              | Statistical tests                    |
-| statsmodels >=0.13       | FDR correction                       |
-| matplotlib >=3.6         | Volcano, PCA, heatmaps               |
-| seaborn >=0.12           | Cleaner statistical plots            |
-| scikit-learn >=1.2       | PCA                                  |
-| networkx >=3.0           | PPI networks                         |
-| requests >=2.28          | Reactome / KEGG / STRING APIs        |
-| openpyxl >=3.1           | Excel input                          |
-| reportlab >=4.0          | PDF report generation                |
-| tqdm >=4.65              | Progress bars for APIs               |
-| gseapy>=1.0              | Pathway and gene set enrichment      |
-| pyyaml>=6.0              | Pipeline configuration management    |
-
-
-## ▶️ Usage
-
-To run the program in the terminal:
-
-```bash
-python protan_pipeline.py
-```
-
-This will:
-
-1. Read your Excel or CSV file (input as `proteome-data.csv`). You can use a different file name and format (`.csv` or `.xlsx`) but change accordingly in the code.
-2. Perform differential expression analysis
-3. Generate plots
-4. Run KEGG, GO and STRING analyses
-5. Produce the output files
-
----
-
-To run the tests in the terminal:
-
-```bash
-pip install pytest
-
-pytest tests/test_protan_pipeline.py -v
-```
 
 ## 📖 Dataset Used
 
