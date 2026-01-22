@@ -75,19 +75,18 @@ Positive values indicate upregulation in resistant cells, while negative values 
 
 * **Volcano Plot**
 
-   * A volcano plot is generated to visualize statistical significance versus magnitude of change:
+  A volcano plot is generated to visualize statistical significance versus magnitude of change:
 
-   x-axis: log2 fold change
-
-   y-axis: −log10(adjusted p-value)
+   * x-axis: log2 fold change
+   * y-axis: −log10(adjusted p-value)
 
 * **Heatmap**
 
-   * A heatmap of the DEPs is generated using hierarchical clustering, enabling visualization of expression patterns across all samples.
+  A heatmap of the DEPs is generated using hierarchical clustering, enabling visualization of expression patterns across all samples.
 
 * **Principal Component Analysis (PCA)**
 
-   * PCA is performed on the expression matrix of significant proteins to assess global separation between sensitive and resistant samples.
+  PCA is performed on the expression matrix of significant proteins to assess global separation between sensitive and resistant samples.
 
 ---
 
@@ -136,9 +135,14 @@ Motifs are:
 
 ## 📝 Files to be run in the repository
 
-* `protan_pipeline.py`
-* `proteome-data.csv`
-* `tests/test_protan_pipeline.py`
+1. `protan_pipeline.py`
+
+2. `proteome-data.csv`
+
+3. `requirements.txt`
+
+4. `tests/test_protan_pipeline.py`
+
 
 ## 📥 Input data format
 
@@ -148,7 +152,7 @@ The pipeline is designed for paired proteomics analysis only. All input files sh
 
  `.csv` file in the following format-
  
- ![image](prot-data-str.png)
+ ![image](images/prot-data-str.png)
 
 S1, S2, S3: drug-sensitive biological replicates
 
@@ -168,42 +172,48 @@ Assumptions-
 
 ## 📤 Output files
 
-├── proteome-data_DE_all
+    ├── proteome-data_DE_all
 
-├── proteome-data_DE_sigp_log2FC.csv
+    ├── proteome-data_DE_sigp_log2FC.csv
 
-├── volcano_DE_proteins.csv
+    ├── volcano_DE_proteins.csv
 
-├── volcano.png
+    ├── volcano.png
 
-├── heatmap_top50_DE_proteins
+    ├── heatmap_top50_DE_proteins
 
-├── heatmap.png
+    ├── heatmap.png
 
-├── pca.png
+    ├── pca.png
 
-├── User desktop
+    ├── User desktop
+    
+       ├── proteomics_analysis
+          ├── kegg_enrichment.csv
+          
+       ├── proteomics_functional
+          ├── go_biological_process.csv
+          ├── go_bubble_plot.png
+          ├── string_ppi_network.png
+          ├── string_ppi_network.pdf
+          ├── string_edges.csv
+          ├── string_network_stats.csv
 
-   ├── proteomics_analysis
-      ├── kegg_enrichment.csv
-
-   ├── proteomics_functional
-      ├── go_biological_process.csv
-      ├── go_bubble_plot.png
-      ├── string_ppi_network.png
-      ├── string_ppi_network.pdf
-      ├── string_edges.csv
-      ├── string_network_stats.csv
-
-   ├── proteomics_motifs
-      ├── motif_enrichment_results.csv
-      ├── motif_enrichment_bubble.png
-      ├── motif_enrichment_bubble.pdf
-      ├── protein_motif_counts.csv
+       ├── proteomics_motifs
+          ├── motif_enrichment_results.csv
+          ├── motif_enrichment_bubble.png
+          ├── motif_enrichment_bubble.pdf
+          ├── protein_motif_counts.csv
 
 ## 🏃‍♀️ Dependencies
 
-Python v3.14
+To install the dependencies, run:
+
+```bash
+pip install -r requirements.txt
+```
+
+Required: Python v3.14
 
 | Package                  | Used for                             |  
 | ------------             | -----------------------------        |
@@ -222,16 +232,14 @@ Python v3.14
 | gseapy>=1.0              | Pathway and gene set enrichment      |
 | pyyaml>=6.0              | Pipeline configuration management    |
 
-To install the above dependencies, run:
-
-`pip install -r requirements.txt`
 
 ## ▶️ Usage
 
 To run the program in the terminal:
 
 ```bash
-`python protan_pipeline.py`
+python protan_pipeline.py
+```
 
 This will:
 
@@ -241,10 +249,13 @@ This will:
 4. Run KEGG, GO and STRING analyses
 5. Produce the output files
 
+---
+
 To run the tests in the terminal:
 
 ```bash
-`pytest tests/test_protan_pipeline.py -v`
+pytest tests/test_protan_pipeline.py -v
+```
 
 ## 📖 Dataset Used
 
@@ -278,8 +289,12 @@ This code does not generalize-
 This pipeline provides an end-to-end, reproducible framework for integrating statistical proteomics, pathway biology, network analysis, and motif-level interpretation. It bridges wet-lab proteomics with computational systems biology, enabling mechanistic insights into drug resistance in cancer.
 
 ---
+
+🎓 This project was written as part of the [Python course](https://github.com/Code-Maven/wis-python-course-2025-10.git) at the Weizmann Institute of Science taught by [Gábor Szabó](https://szabgab.com/).
+
+---
+
 ❓ Let me know if you have any questions or feedback by opening an issue or contacting the project maintainer!
 
 
 ---
-🎓 This project was written as part of the [Python course](https://github.com/Code-Maven/wis-python-course-2025-10.git) at the Weizmann Institute of Science taught by [Gábor Szabó](https://szabgab.com/).
