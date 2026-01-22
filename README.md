@@ -1,6 +1,6 @@
 # ProtAN (Proteome ANalyzer)
 
-ProtAN is a Python-based bioinformatics pipeline dedicated for the comparative analysis of large-scale proteomics datasets. It analyzes the differentially expressed proteins (DEPs) mapping them onto molecular pathways thus allowing comprehensive interpretation and analysis of biologically relevant data.
+ProtAN is a Python-based bioinformatics pipeline dedicated for the comparative analysis of large-scale proteomics datasets. It analyzes paired proteomics datasets and identifies the differentially expressed proteins (DEPs) mapping them onto molecular pathways thus allowing comprehensive interpretation and analysis of biologically relevant data.
 
 ## 📊 Introduction
 
@@ -28,9 +28,9 @@ The workflow assumes that proteomics data have already undergone missing value i
 The pipeline performs the following major steps:
 
 1. Input data parsing and validation
-2. Differential expression analysis (fold change and statistics)
+2. Differential expression analysis (fold change and statistical testing)
 3. Data visualization (volcano plot, heatmap, PCA)
-4. Pathway enrichment analysis (Reactome and KEGG)
+4. Pathway enrichment and functional annotation (KEGG and GO Biological Process)
 5. Protein–protein interaction (PPI) network construction using STRING
 6. Network-level statistics and hub identification
 7. Motif enrichment analysis among deregulated proteins
@@ -38,26 +38,13 @@ The pipeline performs the following major steps:
 
 All steps are executed through a single CLI tool, ensuring reproducibility and scalability to other datasets with similar structure.
 
-## 📥 Input data format
-
- `.csv` or `.xlsx` file in the following format-
- 
- ![image](prot-data-str.png)
-
-S1, S2, S3: drug-sensitive biological replicates
-
-R1, R2, R3: drug-resistant biological replicates
-
-Assumptions-
-* Values are log-transformed (log2 intensity)
-* Data are normalized across samples
-* Missing values have been imputed prior to analysis
-
 ## 📝 Methods
 
 **1. Data Parsing and Quality Control**
 
 Used of pandas to load csv or Excel files. Column names are stripped of whitespace and validated to ensure correct group assignment. Numerical columns are coerced into floating-point format to prevent downstream statistical errors.
+
+---
 
 **2. Differential Expression Analysis**
 
@@ -73,12 +60,16 @@ Positive values indicate upregulation in resistant cells, while negative values 
 
 **Statistical Testing**
 
-* An unpaired two-sample t-test is applied between sensitive and resistant replicates for each protein. P-values are adjusted for multiple testing using the Benjamini–Hochberg false discovery rate (FDR) method.
+* A paired two-sample t-test is applied between sensitive and resistant replicates for each protein. P-values are adjusted for multiple testing using the Benjamini–Hochberg false discovery rate (FDR) method.
 * Proteins are classified as significantly deregulated based on:
 
-  Adjusted p-value threshold (default: 0.05)
+  Adjusted p-value threshold (default: 0.1)
 
-  Absolute log2 fold change threshold (1.5)
+  Absolute log2 fold change threshold (default: 1.5)
+
+* Adjusting p-value and FC thresholds should be done to ensure stringency as per the dataset
+
+---
 
 **3. Data Visualization**
 
@@ -90,8 +81,6 @@ Positive values indicate upregulation in resistant cells, while negative values 
 
    y-axis: −log10(adjusted p-value)
 
-   * Significant proteins are highlighted and optionally labeled.
-
 * **Heatmap**
 
    * A heatmap of the DEPs is generated using hierarchical clustering, enabling visualization of expression patterns across all samples.
@@ -100,23 +89,20 @@ Positive values indicate upregulation in resistant cells, while negative values 
 
    * PCA is performed on the expression matrix of significant proteins to assess global separation between sensitive and resistant samples.
 
-**4. Pathway Enrichment Analysis**
+---
 
-**Reactome Pathway Analysis**
-
-* Significant proteins are mapped to Reactome pathways using the Reactome Content Service REST API.
-* Enrichment is calculated by comparing observed protein counts per pathway against background expectations.
+**4. Pathway Enrichment and Functional Analysis**
 
 **KEGG Pathway Analysis**
 
 * KEGG pathway enrichment is performed using KEGG gene mappings and over-representation analysis.
 * Pathways are ranked by enrichment significance.
 
-Both pathway analyses help identify:
+**GO (Gene Ontology) Functional Annotation**
 
-* DNA damage response pathways
-* Drug metabolism and transport pathways
-* Associated signaling pathways
+* Assigns genes or proteins to standardized biological terms describing their biological processes, molecular functions, and cellular components.
+
+---
 
 **5. Protein–Protein Interaction Network Analysis**
 
@@ -134,7 +120,9 @@ The following network-level metrics are computed:
 * Network density
 * Connected components
 * Degree centrality
-* Highly connected hub proteins are identified as potential key regulators or therapeutic targets.
+* Highly connected hub proteins are identified as potential key regulators or therapeutic targets
+
+---
 
 **6. Motif Enrichment Analysis**
 
@@ -146,46 +134,93 @@ Motifs are:
 * Annotated with known functional roles (e.g., phosphorylation sites, interaction motifs)
 * Linked to potential regulatory mechanisms or protein–protein interactions
 
+## 📝 Files to be run in the repository
+
+* `protan_pipeline.py`
+* `proteome-data.csv`
+* `tests/test_protan_pipeline.py`
+
+## 📥 Input data format
+
+The pipeline is designed for paired proteomics analysis only. All input files should be paired. Users can change input file format and dataframe headers as per the dataset.
+
+ * Standard input example taken for this pipeline-
+
+ `.csv` file in the following format-
+ 
+ ![image](prot-data-str.png)
+
+S1, S2, S3: drug-sensitive biological replicates
+
+R1, R2, R3: drug-resistant biological replicates
+
+---
+
+Other acceptable input formats (change code accordingly)-
+
+* `.xlsx` file 
+* Paired data headers such as Control vs Tumor/ N0 vs Healthy/ Grade1 tumor vs Grade2 tumor etc.
+
+Assumptions-
+* Values are log-transformed (log2 intensity)
+* Data are normalized across samples
+* Missing values have been imputed prior to analysis
+
 ## 📤 Output files
 
-results/
+├── proteome-data_DE_all
+
+├── proteome-data_DE_sigp_log2FC.csv
+
+├── volcano_DE_proteins.csv
 
 ├── volcano.png
 
-├── pca.png
+├── heatmap_top50_DE_proteins
 
 ├── heatmap.png
 
-├── reactome_enrichment.csv
+├── pca.png
 
-├── kegg_enrichment.csv
+├── User desktop
 
-├── ppi_top_hits.csv
+   ├── proteomics_analysis
+      ├── kegg_enrichment.csv
 
-├── motif_enrichment.csv
+   ├── proteomics_functional
+      ├── go_biological_process.csv
+      ├── go_bubble_plot.png
+      ├── string_ppi_network.png
+      ├── string_ppi_network.pdf
+      ├── string_edges.csv
+      ├── string_network_stats.csv
 
-├── proteomics_analysis_report.pdf
+   ├── proteomics_motifs
+      ├── motif_enrichment_results.csv
+      ├── motif_enrichment_bubble.png
+      ├── motif_enrichment_bubble.pdf
+      ├── protein_motif_counts.csv
 
-└── motif_and_network_report.pdf
+## 🏃‍♀️ Dependencies
 
-## 🏃‍♀️ Installations
+Python v3.14
 
-Python v3.9+
-
-| Package                  | Used for                      |  
-| ------------             | ----------------------------- |
-| pandas >=1.5             | Data loading & manipulation   |
-| numpy >=1.23             | Numerical operations          |
-| scipy >=1.9              | Statistical tests             |
-| statsmodels >=0.13       | FDR correction                |
-| matplotlib >=3.6         | Volcano, PCA, heatmaps        |
-| seaborn >=0.12           | Cleaner statistical plots     |
-| scikit-learn >=1.2       | PCA                           |
-| networkx >=3.0           | PPI networks                  |
-| requests >=2.28          | Reactome / KEGG / STRING APIs |
-| openpyxl >=3.1           | Excel input                   |
-| reportlab >=4.0          | PDF report generation         |
-| tqdm >=4.65              | Progress bars for APIs        |
+| Package                  | Used for                             |  
+| ------------             | -----------------------------        |
+| pandas >=1.5             | Data loading & manipulation          |
+| numpy >=1.23             | Numerical operations                 |
+| scipy >=1.9              | Statistical tests                    |
+| statsmodels >=0.13       | FDR correction                       |
+| matplotlib >=3.6         | Volcano, PCA, heatmaps               |
+| seaborn >=0.12           | Cleaner statistical plots            |
+| scikit-learn >=1.2       | PCA                                  |
+| networkx >=3.0           | PPI networks                         |
+| requests >=2.28          | Reactome / KEGG / STRING APIs        |
+| openpyxl >=3.1           | Excel input                          |
+| reportlab >=4.0          | PDF report generation                |
+| tqdm >=4.65              | Progress bars for APIs               |
+| gseapy>=1.0              | Pathway and gene set enrichment      |
+| pyyaml>=6.0              | Pipeline configuration management    |
 
 To install the above dependencies, run:
 
@@ -193,17 +228,23 @@ To install the above dependencies, run:
 
 ## ▶️ Usage
 
-To run the program, use the following command in the terminal:
+To run the program in the terminal:
 
-`python proteomics_pipeline.py --input proteomics_data.csv --outdir results/`
+```bash
+`python protan_pipeline.py`
 
 This will:
 
-1. Read your Excel or CSV file (input as `proteomics_data.csv`). You can usea different file name and format (.csv or.xlsx) but also change accordingly in the usage command.
+1. Read your Excel or CSV file (input as `proteome-data.csv`). You can usea different file name and format (.csv or.xlsx) but also change accordingly in the run command.
 2. Perform differential expression analysis
 3. Generate plots
-4. Run Reactome, KEGG, STRING analyses
-5. Produce PDF 1 and PDF 2 inside `results/`
+4. Run KEGG, GO and STRING analyses
+5. Produce the output files
+
+To run the tests in the terminal:
+
+```bash
+`pytest tests/test_protan_pipeline.py -v`
 
 ## 📖 Dataset Used
 
@@ -235,3 +276,10 @@ This code does not generalize-
 ## 🔓 Summary
 
 This pipeline provides an end-to-end, reproducible framework for integrating statistical proteomics, pathway biology, network analysis, and motif-level interpretation. It bridges wet-lab proteomics with computational systems biology, enabling mechanistic insights into drug resistance in cancer.
+
+---
+❓ Let me know if you have any questions or feedback by opening an issue or contacting the project maintainer!
+
+
+---
+🎓 This project was written as part of the [Python course](https://github.com/Code-Maven/wis-python-course-2025-10.git) at the Weizmann Institute of Science taught by [Gábor Szabó](https://szabgab.com/).
