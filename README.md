@@ -134,14 +134,14 @@ Motifs are:
 * Annotated with known functional roles (e.g., phosphorylation sites, interaction motifs)
 * Linked to potential regulatory mechanisms or protein–protein interactions
 
-## 📝 Files to be run in the repository
+## 📝 Files required
 
 1. `requirements.txt`
 2. `proteome-data.csv`
 3. `protan_pipeline.py`
 4. `tests/test_protan_pipeline.py`
 
-## 🧭 Steps to run
+## 🧭 Steps
 
 ## 🏃‍♀️ 1. Dependencies
 
@@ -198,7 +198,7 @@ Assumptions-
 
 ## ▶️ 3. Usage
 
-To run the program in the terminal:
+A. To run the program in the terminal:
 
 ```bash
 python protan_pipeline.py
@@ -214,7 +214,7 @@ This will:
 
 ---
 
-4. To run the tests in the terminal:
+B. To run the tests in the terminal:
 
 ```bash
 pip install pytest
@@ -222,7 +222,7 @@ pip install pytest
 pytest tests/test_protan_pipeline.py -v
 ```
 
-## 📤 5. Output files
+## 📤 4. Output files
 
     ├── proteome-data_DE_all
 
