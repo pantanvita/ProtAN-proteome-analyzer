@@ -174,7 +174,7 @@ plt.savefig("volcano.png")
 plt.show()
 plt.close()
 
-# After you finish preparing df_sig (significant DE proteins)
+# After finish preparing df_sig (significant DE proteins)
 df_sig.to_csv("volcano_DE_proteins.csv", index=False)
 
 # ======================================================================
@@ -182,7 +182,7 @@ df_sig.to_csv("volcano_DE_proteins.csv", index=False)
 # ======================================================================
 
 # 1. Select top 50 differentially expressed proteins
-#    Here we use the absolute log2FC and p-value thresholds already applied.
+#    Here we use the absolute log2FC and p-value thresholds already applied
 
 if "df_sig" not in locals():
     sig_mask = (df["p_value"] < p_thresh) & (df["log2FC"].abs() >= fc_thresh)
@@ -194,11 +194,11 @@ df_top = df_sig.sort_values("log2FC", key=lambda x: x.abs(), ascending=False).he
 print(f"Number of proteins used for heatmap: {df_top.shape[0]}")
 
 # 2. Build expression matrix for heatmap
-#    Use the original 6 intensity columns, with requested column labels.
+# Using the original 6 intensity columns, with requested column labels
 expr_cols = ["S1", "S2", "S3", "R1", "R2", "R3"]
 heatmap_data = df_top[expr_cols].copy()
 
-# Rename columns to CIS/S-1, CIS/S-2, CIS/S-3, CIS/R-1, CIS/R-2, CIS/R-3
+# Renaming columns to CIS/S-1, CIS/S-2, CIS/S-3, CIS/R-1, CIS/R-2, CIS/R-3
 heatmap_data.columns = [
     "CIS/S-1", "CIS/S-2", "CIS/S-3",
     "CIS/R-1", "CIS/R-2", "CIS/R-3"
@@ -241,7 +241,7 @@ plt.savefig("heatmap.png")
 plt.show()
 plt.close()
 
-# After you finish preparing df_top (top 50 DE proteins for heatmap)
+# After finish preparing df_top (top 50 DE proteins for heatmap)
 df_top.to_csv("heatmap_top50_DE_proteins.csv", index=False)
 
 # ======================================================================
@@ -607,7 +607,7 @@ print("   • string_network_stats.csv")
 # ======================================================================
 # 14. Network saving 
 # ======================================================================
-# Save network stats (no gpickle dependency)
+# Save network stats
 
 network_stats = {
     'nodes': len(G.nodes()),
@@ -620,7 +620,7 @@ network_stats = {
 stats_df = pd.DataFrame([network_stats])
 stats_df.to_csv(output_dir / "string_network_stats.csv", index=False)
 
-# Save edges as CSV (works universally)
+# Save edges as CSV
 edges_df = pd.DataFrame([
     {'node1': u, 'node2': v, 'score': d['weight']} 
     for u, v, d in G.edges(data=True)
@@ -688,7 +688,7 @@ def mock_protein_sequence(gene_name, length=500):
 sig_genes = df_sig["Gene"].str.split(";").explode().str.strip().unique()
 sig_genes = [g.upper() for g in sig_genes if pd.notna(g) and len(g) > 1]
 
-# Generate mock sequences (REPLACE with real UniProt sequences)
+# Generate mock sequences
 protein_sequences = {}
 for gene in sig_genes[:30]:  # limit for demo
     protein_sequences[gene] = mock_protein_sequence(gene)
@@ -706,8 +706,8 @@ for gene, seq in protein_sequences.items():
     
     for motif_name, pattern in motifs.items():
         # FIXED: Convert iterator to list before len()
-        matches = list(re.finditer(pattern, seq))  # ✅ Convert to list first
-        count = len(matches)                       # Now safe
+        matches = list(re.finditer(pattern, seq))  # Convert to list 
+        count = len(matches)                       
         
         row[f'{motif_name}_count'] = count
         row[f'{motif_name}_density'] = count / len(seq) * 1000
@@ -733,7 +733,7 @@ bg_results = []
 for gene, seq in background_seqs.items():
     row = {'Gene': gene, 'Sequence_Length': len(seq)}
     for motif_name, pattern in motifs.items():
-        matches = list(re.finditer(pattern, seq))  # ✅ Convert to list first
+        matches = list(re.finditer(pattern, seq))  # Convert to list
         count = len(matches)
         row[f'{motif_name}_count'] = count
         row[f'{motif_name}_density'] = count / len(seq) * 1000
