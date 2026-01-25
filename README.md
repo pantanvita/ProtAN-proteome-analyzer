@@ -136,10 +136,11 @@ Motifs are:
 
 ## 📝 Files required
 
-1. `requirements.txt`
-2. `proteome-data.csv`
-3. `protan_pipeline.py`
-4. `tests/test_protan_pipeline.py`
+1. `requirements.txt` : Contains the required dependencies to be installed
+2. `proteome-data.csv` : Input data file to be analyzed
+3. `protan_pipeline.py` : The Python script to be run
+4. `tests/test_protan_pipeline.py` : tests folder containing the tests that can be run
+5. `protan_pipeline_analysis.ipynb` : The front-end Jupyter notebook which walks the user through the gross processing pipeline
 
 ## 🧭 Steps
 
