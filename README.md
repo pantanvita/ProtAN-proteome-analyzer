@@ -1,6 +1,6 @@
 # ProtAN (Proteome ANalyzer)
 
-ProtAN is a Python-based bioinformatics pipeline dedicated for the comparative analysis of large-scale proteomics datasets. It analyzes paired proteomics datasets and identifies the differentially expressed proteins (DEPs) mapping them onto molecular pathways thus allowing comprehensive interpretation and analysis of biologically relevant data.
+ProtAN is a Python-based bioinformatics pipeline dedicated for the comparative analysis of large-scale proteomics datasets. This pipeline analyzes paired proteomics datasets, identifies differentially expressed proteins (DEPs), and maps them onto molecular pathways for comprehensive biological interpretation of large-scale data.
 
 ## 📊 Introduction
 
