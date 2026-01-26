@@ -292,7 +292,7 @@ This pipeline provides an end-to-end, reproducible framework for integrating sta
 
 ---
 
-🎓 This project was written as part of the [Python course 20263071](https://github.com/Code-Maven/wis-python-course-2025-10.git) at the Weizmann Institute of Science taught by [Gábor Szabó](https://szabgab.com/).
+🎓 This project was written by [Anvita Pant](https://github.com/pantanvita/pantanvita.github.io.git) as part of the [Python course 20263071](https://github.com/Code-Maven/wis-python-course-2025-10.git) at the Weizmann Institute of Science taught by [Gábor Szabó](https://szabgab.com/).
 
 ---
 
