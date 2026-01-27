@@ -267,7 +267,7 @@ Amrita Mukherjee, Sayan Manna, Avinash Singh, Adrija Ray, and Sanjeeva Srivastav
 
 Journal of Proteome Research 2025 24 (6), 2628-2642
 
-[DOI:10.1021/acs.jproteome.4c00885](https://doi.org/10.1021/acs.jproteome.4c00885)
+DOI: [10.1021/acs.jproteome.4c00885](https://doi.org/10.1021/acs.jproteome.4c00885)
 
 The datasets used here are Table S3 and S4. The two tables are combined into a single .csv file `proteome-data.csv` with columns- Protein_ID, Gene, S1, S2, S3, R1, R2 and R3 for use in the program.
 
